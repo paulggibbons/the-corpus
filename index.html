@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Corpus — Query 30 Years of Thinking | Paul Gibbons Advisory</title>
+<meta name="description" content="Most AI is trained on the internet. This one was trained on Paul Gibbons — 8 books, 30 years of research, unpublished work. Ask hard questions. Get cited answers.">
+<meta name="keywords" content="Paul Gibbons, AI corpus, queryable mind, leadership, change management, adaptive adoption, evidence-based management">
+<meta property="og:title" content="The Corpus — Paul Gibbons Advisory">
+<meta property="og:description" content="Eight books. Thirty years. One queryable mind.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://paulgibbonsadvisory.com/corpus">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "The Corpus",
+  "description": "A RAG-powered AI trained exclusively on Paul Gibbons' complete intellectual corpus — 8 published books, unpublished volumes, and 30 years of research.",
+  "url": "https://paulgibbonsadvisory.com/corpus",
+  "applicationCategory": "AI Knowledge Base",
+  "creator": {
+    "@type": "Person",
+    "name": "Paul Gibbons",
+    "jobTitle": "Author, Advisor, Speaker",
+    "url": "https://paulgibbonsadvisory.com"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Bebas+Neue&family=IM+Fell+English:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:        #0f0e0d;
+  --paper:      #f5f0e8;
+  --rust:       #c84b2f;
+  --gold:       #b8922a;
+  --gold-light: #f0d060;
+  --green:      #2a6b4a;
+  --mid:        #6b6560;
+  --bg-dark:    #080a0f;
+  --bg-canvas:  #6b4430;
+  --bg-canvas2: #5a3826;
+  --bg-claim:   #7a5038;
+  --warm:       #4a2e1a;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-dark);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--paper);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   SECTION 1: HERO
+═══════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-dark);
+  overflow: hidden;
+}
+
+/* Constellation background — atmospheric, doesn't perform */
+.hero-constellation {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+}
+.hero-constellation canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: block;
+}
+
+/* Hero foreground text */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 8vh 2rem 0;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  letter-spacing: 0.18em;
+  color: var(--paper);
+  font-weight: 400;
+  margin-bottom: 0.6rem;
+}
+
+.hero-tagline {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(1rem, 2.2vw, 1.4rem);
+  color: var(--gold);
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+.hero-sub {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: rgba(160, 135, 75, 0.4);
+  margin-bottom: 3rem;
+}
+
+/* ── 15 Themes Grid ── */
+.themes-grid {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 900px) {
+  .themes-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 520px) {
+  .themes-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.theme-cell {
+  background: rgba(20, 24, 35, 0.85);
+  border: 1px solid rgba(90, 115, 160, 0.15);
+  border-radius: 6px;
+  padding: 0.7rem 0.8rem;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s, transform 0.2s;
+  position: relative;
+}
+
+.theme-cell:hover {
+  border-color: rgba(184, 146, 42, 0.45);
+  background: rgba(28, 34, 52, 0.95);
+  transform: translateY(-1px);
+}
+
+.theme-cell.expanded {
+  grid-column: span 2;
+  background: rgba(18, 22, 38, 0.98);
+  border-color: rgba(184, 146, 42, 0.5);
+}
+
+@media (max-width: 520px) {
+  .theme-cell.expanded { grid-column: span 2; }
+}
+
+.theme-cell-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.theme-cell-name {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.72rem;
+  color: rgba(225, 205, 168, 0.82);
+  letter-spacing: 0.03em;
+  display: inline;
+  vertical-align: middle;
+}
+
+.theme-cell.expanded .theme-cell-name {
+  color: var(--gold-light);
+  font-size: 0.78rem;
+}
+
+/* Expanded content */
+.theme-detail {
+  display: none;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid rgba(184, 146, 42, 0.15);
+}
+
+.theme-cell.expanded .theme-detail {
+  display: block;
+}
+
+.theme-books {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 0.6rem;
+}
+
+.theme-book-pill {
+  font-size: 0.54rem;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 0.5px solid rgba(184, 146, 42, 0.25);
+  color: rgba(225, 205, 168, 0.65);
+  background: rgba(184, 146, 42, 0.06);
+  white-space: nowrap;
+}
+
+.theme-passage {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: rgba(225, 205, 168, 0.55);
+  margin-bottom: 0.7rem;
+}
+
+.theme-passage cite {
+  font-style: normal;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.58rem;
+  color: rgba(184, 146, 42, 0.45);
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.theme-ask-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.64rem;
+  font-weight: 500;
+  color: var(--rust);
+  background: transparent;
+  border: 1px solid rgba(200, 75, 47, 0.35);
+  border-radius: 4px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.theme-ask-btn:hover {
+  background: rgba(200, 75, 47, 0.1);
+  border-color: rgba(200, 75, 47, 0.6);
+}
+
+.themes-footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0.8rem 2rem 2rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  color: rgba(160, 135, 75, 0.3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 2: WHY THIS MATTERS
+═══════════════════════════════════════════ */
+
+.why-section {
+  background: var(--bg-canvas);
+  padding: 6rem 2rem;
+}
+
+.why-container {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.why-section-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  color: var(--rust);
+  margin-bottom: 0.8rem;
+}
+
+.why-section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: 1.2rem;
+  line-height: 1.25;
+}
+
+.why-section-body {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  line-height: 1.82;
+  color: rgba(232, 220, 200, 0.78);
+  margin-bottom: 4rem;
+}
+
+.why-section-body:last-child {
+  margin-bottom: 0;
+}
+
+.why-section-body em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.why-section-body strong {
+  color: var(--paper);
+  font-weight: 400;
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 3: CHATBOX
+═══════════════════════════════════════════ */
+
+.chatbox-section {
+  background: var(--bg-dark);
+  padding: 4rem 2rem 5rem;
+  border-top: 1px solid rgba(184,146,42,0.1);
+  border-bottom: 1px solid rgba(184,146,42,0.1);
+}
+
+.chatbox-wrapper {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.chatbox-header {
+  text-align: center;
+  margin-bottom: 1.6rem;
+}
+
+.chatbox-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: 0.5rem;
+}
+
+.chatbox-header p {
+  font-size: 0.78rem;
+  color: rgba(225, 205, 168, 0.4);
+  line-height: 1.6;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Prompt carousel */
+.carousel-container {
+  position: relative;
+  margin-bottom: 1.8rem;
+  padding: 0 2.5rem;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.carousel-prompt {
+  flex: 0 0 calc(33.333% - 7px);
+  background: rgba(28, 34, 52, 0.6);
+  border: 1px solid rgba(90, 115, 160, 0.18);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.72rem;
+  color: rgba(225, 205, 168, 0.6);
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, color 0.25s;
+  line-height: 1.45;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .carousel-prompt { flex: 0 0 calc(100% - 4px); }
+}
+
+.carousel-prompt:hover {
+  border-color: rgba(184,146,42,0.45);
+  background: rgba(38, 46, 70, 0.8);
+  color: rgba(240, 222, 165, 0.95);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(28, 34, 52, 0.8);
+  border: 1px solid rgba(90, 115, 160, 0.2);
+  color: rgba(225, 205, 168, 0.5);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: border-color 0.2s, color 0.2s;
+  z-index: 2;
+}
+
+.carousel-arrow:hover {
+  border-color: rgba(184,146,42,0.5);
+  color: var(--gold-light);
+}
+
+.carousel-arrow.prev { left: 0; }
+.carousel-arrow.next { right: 0; }
+
+/* Chat interface */
+.chatbox-interface {
+  background: rgba(14, 18, 28, 0.6);
+  border: 1px solid rgba(90, 115, 160, 0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.chatbox-messages {
+  min-height: 300px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbox-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.chatbox-empty p {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(225, 205, 168, 0.2);
+  max-width: 360px;
+  line-height: 1.55;
+}
+
+/* Message bubbles */
+.msg {
+  margin-bottom: 1rem;
+  max-width: 85%;
+  animation: msgIn 0.3s ease-out;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: rgba(184, 146, 42, 0.12);
+  border: 1px solid rgba(184, 146, 42, 0.2);
+  border-radius: 10px 10px 2px 10px;
+  padding: 0.7rem 1rem;
+  font-size: 0.82rem;
+  color: rgba(240, 222, 165, 0.9);
+}
+
+.msg-bot {
+  align-self: flex-start;
+  background: rgba(28, 34, 52, 0.5);
+  border: 1px solid rgba(90, 115, 160, 0.12);
+  border-radius: 10px 10px 10px 2px;
+  padding: 0.9rem 1rem;
+  font-size: 0.82rem;
+  color: rgba(225, 205, 168, 0.8);
+  line-height: 1.6;
+}
+
+.msg-bot .msg-sources {
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(90, 115, 160, 0.1);
+  font-size: 0.62rem;
+  color: rgba(184, 146, 42, 0.45);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+
+.msg-typing {
+  align-self: flex-start;
+  padding: 0.7rem 1rem;
+  font-size: 0.75rem;
+  color: rgba(184, 146, 42, 0.4);
+  font-style: italic;
+}
+
+.chatbox-input-row {
+  display: flex;
+  border-top: 1px solid rgba(90, 115, 160, 0.1);
+  background: rgba(10, 14, 22, 0.8);
+}
+
+.chatbox-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--paper);
+  outline: none;
+}
+
+.chatbox-input::placeholder {
+  color: rgba(225, 205, 168, 0.2);
+}
+
+.chatbox-send {
+  background: transparent;
+  border: none;
+  padding: 1rem 1.4rem;
+  color: var(--gold);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.chatbox-send:hover {
+  color: var(--gold-light);
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 4: ORIGINALITY CLAIM
+═══════════════════════════════════════════ */
+
+.originality-section {
+  background: var(--bg-claim);
+  padding: 5rem 2rem;
+}
+
+.originality-container {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.originality-container h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-weight: 400;
+  color: rgba(232, 220, 200, 0.7);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.originality-distinction {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+
+.originality-body {
+  text-align: left;
+}
+
+.originality-body h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--rust);
+  margin-bottom: 0.6rem;
+  margin-top: 2.2rem;
+}
+
+.originality-body h3:first-child {
+  margin-top: 0;
+}
+
+.originality-body p {
+  font-family: 'DM Serif Display', serif;
+  font-size: 0.95rem;
+  line-height: 1.78;
+  color: rgba(232, 220, 200, 0.75);
+  margin-bottom: 0.8rem;
+}
+
+.originality-body p strong {
+  color: var(--paper);
+  font-weight: 400;
+}
+
+.originality-body p em {
+  color: var(--gold);
+}
+
+.originality-coda {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(245,240,232,0.08);
+  text-align: center;
+}
+
+.originality-coda p {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: rgba(232, 220, 200, 0.5);
+  line-height: 1.65;
+}
+
+.originality-coda p:last-child {
+  color: var(--gold);
+  margin-top: 0.6rem;
+}
+
+
+/* ═══════════════════════════════════════════
+   SECTION 5: HOW I BUILT THIS
+═══════════════════════════════════════════ */
+
+.architecture-section {
+  background: var(--bg-dark);
+  border-top: 1px solid rgba(184,146,42,0.1);
+  padding: 4rem 2rem 5rem;
+}
+
+.arch-intro {
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.arch-intro h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  color: var(--paper);
+  margin-bottom: 0.5rem;
+}
+
+.arch-intro .arch-subhead {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--gold);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.arch-intro p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(225, 205, 168, 0.55);
+}
+
+.arch-intro p strong {
+  color: rgba(225, 205, 168, 0.85);
+  font-weight: 500;
+}
+
+/* Architecture diagram container */
+.arch-diagram {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.arch-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.arch-header-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(180, 150, 60, 0.45);
+  margin-bottom: 0.8rem;
+}
+.arch-header-title {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.65rem;
+  font-weight: 400;
+  color: rgba(240, 222, 165, 0.92);
+  letter-spacing: 0.04em;
+}
+
+/* Pipeline grid */
+.pipeline {
+  display: grid;
+  grid-template-columns: 1fr 38px 1fr 38px 1fr 38px 1fr;
+  align-items: start;
+  gap: 0;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 800px) {
+  .pipeline { grid-template-columns: 1fr; gap: 0.8rem; }
+  .arrow-col { display: none; }
+}
+
+.col { display: flex; flex-direction: column; }
+
+.col-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(180, 158, 88, 0.65);
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid rgba(140, 115, 55, 0.25);
+}
+
+.node {
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(28, 34, 52, 0.95);
+  border: 1px solid rgba(90, 115, 160, 0.35);
+  border-radius: 7px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 10px;
+  position: relative;
+  transition: border-color 0.3s, background 0.3s;
+}
+.node:hover { background: rgba(38, 46, 70, 0.98); }
+.node:hover .node-glow { opacity: 1; }
+
+.node-glow {
+  position: absolute; inset: -1px; border-radius: 7px;
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+
+.node-icon { font-size: 0.56rem; letter-spacing: 0.14em; margin-bottom: 0.4rem; font-weight: 500; }
+.node-name { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.02em; line-height: 1.3; margin-bottom: 0.3rem; }
+.node-sub  { font-size: 0.64rem; line-height: 1.55; font-weight: 300; }
+
+.node.source { border-color: rgba(70,190,100,0.3); background: rgba(20,38,28,0.95); }
+.node.source:hover { border-color: rgba(80,210,115,0.6); }
+.node.source .node-glow { box-shadow: 0 0 22px rgba(60,190,90,0.18); }
+.node.source .node-icon { color: rgba(80,220,110,0.65); }
+.node.source .node-name { color: rgba(180,240,195,0.95); }
+.node.source .node-sub  { color: rgba(130,190,145,0.8); }
+
+.node.process { border-color: rgba(210,160,50,0.3); background: rgba(32,26,14,0.95); }
+.node.process:hover { border-color: rgba(230,180,65,0.6); }
+.node.process .node-glow { box-shadow: 0 0 22px rgba(210,160,50,0.18); }
+.node.process .node-icon { color: rgba(240,185,65,0.65); }
+.node.process .node-name { color: rgba(250,220,155,0.95); }
+.node.process .node-sub  { color: rgba(205,175,110,0.8); }
+
+.node.retrieve { border-color: rgba(80,130,220,0.3); background: rgba(14,22,42,0.95); }
+.node.retrieve:hover { border-color: rgba(100,155,245,0.6); }
+.node.retrieve .node-glow { box-shadow: 0 0 22px rgba(80,135,230,0.18); }
+.node.retrieve .node-icon { color: rgba(110,165,250,0.65); }
+.node.retrieve .node-name { color: rgba(175,205,255,0.95); }
+.node.retrieve .node-sub  { color: rgba(130,165,220,0.8); }
+
+.node.respond { border-color: rgba(185,85,200,0.3); background: rgba(28,14,36,0.95); }
+.node.respond:hover { border-color: rgba(215,105,230,0.6); }
+.node.respond .node-glow { box-shadow: 0 0 22px rgba(195,85,210,0.18); }
+.node.respond .node-icon { color: rgba(220,110,240,0.65); }
+.node.respond .node-name { color: rgba(230,185,245,0.95); }
+.node.respond .node-sub  { color: rgba(185,145,210,0.8); }
+
+.stat {
+  font-family: 'JetBrains Mono', monospace;
+  display: inline-block;
+  font-size: 0.54rem;
+  letter-spacing: 0.1em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 0.4rem;
+}
+.stat.green  { color: rgba(100,225,125,0.85); border: 0.5px solid rgba(80,210,100,0.22); background: rgba(50,180,80,0.08); }
+.stat.amber  { color: rgba(240,190,70,0.85);  border: 0.5px solid rgba(230,170,55,0.22); background: rgba(200,150,40,0.08); }
+.stat.blue   { color: rgba(120,175,255,0.85); border: 0.5px solid rgba(100,155,240,0.22); background: rgba(75,125,220,0.08); }
+.stat.purple { color: rgba(220,120,245,0.85); border: 0.5px solid rgba(200,100,225,0.22); background: rgba(175,80,200,0.08); }
+
+.arrow-col {
+  display: flex; flex-direction: column;
+  align-items: center; padding-top: 2.6rem;
+}
+
+@keyframes flowDot {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+.dot1 { animation: flowDot 2.4s linear infinite; }
+.dot2 { animation: flowDot 2.4s linear infinite; animation-delay: 0.8s; }
+.dot3 { animation: flowDot 2.4s linear infinite; animation-delay: 1.6s; }
+
+.arch-statement {
+  margin-top: 2.4rem;
+  padding: 1.6rem 2.5rem;
+  border-top: 0.5px solid rgba(140,118,58,0.2);
+  border-bottom: 0.5px solid rgba(140,118,58,0.2);
+  text-align: center;
+}
+.arch-statement-line1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: rgba(195,175,120,0.75);
+  margin-bottom: 0.65rem;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+}
+.arch-statement-line1 span { color: rgba(235,210,140,0.92); font-weight: 500; }
+.arch-statement-line2 {
+  font-family: 'IM Fell English', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: rgba(240,218,148,0.88);
+  letter-spacing: 0.05em;
+}
+
+.arch-caption {
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: rgba(225, 205, 168, 0.35);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.55;
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--bg-dark);
+  font-size: 0.68rem;
+  color: rgba(225, 205, 168, 0.2);
+  letter-spacing: 0.06em;
+  border-top: 1px solid rgba(184,146,42,0.08);
+}
+</style>
+</head>
+<body>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1: HERO
+═══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-label="The Corpus — hero">
+
+  <!-- Constellation background (atmospheric) -->
+  <div class="hero-constellation" id="constellation-bg">
+    <canvas id="constellation-canvas"></canvas>
+  </div>
+
+  <!-- Foreground text -->
+  <div class="hero-content">
+    <h1 class="hero-title">The Corpus</h1>
+    <p class="hero-tagline">Most AI is trained on the internet. This one was trained on me.</p>
+    <p class="hero-sub">15 THEMES · 30 YEARS · ONE QUERYABLE MIND</p>
+  </div>
+
+  <!-- 15 Themes Grid -->
+  <div class="themes-grid" id="themes-grid"></div>
+
+  <div class="themes-footer">Generated via AI corpus analysis across 1,010 indexed passages</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2: WHY THIS MATTERS
+═══════════════════════════════════════════════════════════════ -->
+<section class="why-section" id="why" aria-label="Why This Matters">
+  <div class="why-container">
+
+    <div class="why-section-tag">THE PERSONAL STORY</div>
+    <h2 class="why-section-title">I&rsquo;m Client Zero</h2>
+    <div class="why-section-body">
+      <p>When I started giving talks on AI in 2017, it was theory. Theory helps but doesn&rsquo;t solve business problems — because the mess of organizational reality isn&rsquo;t in books.</p>
+      <p>There are hundreds of thousands of people opining about AI who have never created with AI. Who have never grappled with infrastructure choices, fixed endless permissions snafus, or wrangled data less well organized than a landfill. In my case: 35 years of thinking strewn across thousands of folders.</p>
+      <p>I wanted to feel the same pain my clients feel. And almost weekly, I&rsquo;ve felt the joy of building something real with my own hands. <strong>That isn&rsquo;t in books or webinars.</strong></p>
+      <p>Then I built this.</p>
+      <p><strong>One person. No team. No engineering degree. No budget.</strong> I hadn&rsquo;t touched a codebase in 35 years. The pipeline, the chunking, the embeddings, the query layer — built using Claude, from scratch, in a few weekends.</p>
+      <p><em>The engineering isn&rsquo;t a footnote. It is the argument.</em></p>
+      <p>In 2022, this wasn&rsquo;t possible. In 2025, it would have cost $100,000 and taken three months. In 2026, you can do it yourself.</p>
+      <p>This isn&rsquo;t a case study from someone else&rsquo;s company. Not a prediction about what AI will enable. <strong>This is what happens when the gap between idea and execution collapses.</strong></p>
+    </div>
+
+    <div class="why-section-tag">THE PROBLEM IT SOLVES</div>
+    <h2 class="why-section-title">The Internet Is an Averaging Machine</h2>
+    <div class="why-section-body">
+      <p>Ask about &ldquo;human responses to organizational change&rdquo; and any AI will give you the change curve — a concept thoroughly debunked by scholars in the field. Every search returns the consensus. The SEO-optimised. The algorithmically safe. AI trained on that body of work inherits all of it: the hedging, the mediocrity, the institutional caution dressed as objectivity.</p>
+      <p><em>Most AI is trained on the internet. This one was trained on books and research papers.</em></p>
+      <p>A body of scholarship with a 30-year evidence base, peer-reviewed foundations, and a documented intellectual lineage. Positions taken, defended, and revised in public, across eight books and dozens of white papers. Not the average of what everyone thinks about change, AI, and leadership — but what one person has argued, tested, and staked their reputation on.</p>
+      <p><strong>You want an antidote to mediocrity. And one you can push back on.</strong></p>
+    </div>
+
+    <div class="why-section-tag">WHAT YOU CAN DO HERE</div>
+    <h2 class="why-section-title">Ask the Hard Question</h2>
+    <div class="why-section-body">
+      <p>To get to grips with an author, you buy their books, spend hours reading them, or use the index and hope your interests are covered. Across eight books and dozens of papers, that is an oppressive and expensive project.</p>
+      <p>Go to Amazon instead. Look up any business book. You get: &ldquo;A groundbreaking exploration of leadership in the modern era, essential reading for executives navigating change.&rdquo; Written by a publicist. Tells you nothing.</p>
+      <p>Here, you can ask: <em>Does Paul actually have evidence for his claims about culture change?</em> Or: <em>How does Adaptive Adoption differ from Kotter — and why does it matter?</em> Or: <em>What is the link between information disorder and organizational culture?</em> Or simply: <em>Where is he wrong?</em></p>
+      <p><strong>Real interrogation. Cited sources. No puffery. A library that talks back.</strong></p>
+      <p>This is for researchers, serious readers, and anyone who wants to stress-test an idea rather than consume a summary.</p>
+    </div>
+
+    <div class="why-section-tag">THE DEPTH HOOK</div>
+    <h2 class="why-section-title">Some of This Thinking Doesn&rsquo;t Exist Anywhere Else on the Internet</h2>
+    <div class="why-section-body">
+      <p>This corpus contains work that has never been published.</p>
+      <p><em>The Great Collisions</em> is a five-volume project on the deepest structural tensions of our time — the points where science, philosophy, economics, and technology are pulling in opposite directions and something has to give. Two volumes are queryable here, before they exist as books.</p>
+      <p>Including <em>Oracle Science</em>: what happens to science when AI predicts outcomes without generating explanatory theory? When the model is right but no one knows why? When the scientific method — hypothesis, mechanism, explanation — becomes optional?</p>
+      <p>A researcher can interrogate unpublished frameworks. A publisher can peer inside work in progress. A journalist can ask questions that haven&rsquo;t been answered in print yet.</p>
+      <p><strong>Some of this thinking doesn&rsquo;t exist anywhere else on the internet. Query it here first.</strong></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3: CHATBOX
+═══════════════════════════════════════════════════════════════ -->
+<section class="chatbox-section" id="chatbox" aria-label="Ask the Corpus">
+  <div class="chatbox-wrapper">
+
+    <div class="chatbox-header">
+      <h2>Ask anything.</h2>
+      <p>Answers are drawn from 8 published books, 2 unpublished manuscripts, 5 works in progress, and 50 articles. Sources cited in every response.</p>
+    </div>
+
+    <!-- Prompt carousel -->
+    <div class="carousel-container">
+      <button class="carousel-arrow prev" id="carousel-prev" aria-label="Previous prompts">&#8249;</button>
+      <div class="carousel-track" id="carousel-track"></div>
+      <button class="carousel-arrow next" id="carousel-next" aria-label="Next prompts">&#8250;</button>
+    </div>
+
+    <!-- Chat interface -->
+    <div class="chatbox-interface">
+      <div class="chatbox-messages" id="chatbox-messages">
+        <div class="chatbox-empty" id="chatbox-empty">
+          <p>Ask a question about leadership, change, AI adoption, or any of the 15 themes. Every answer is grounded in the work.</p>
+        </div>
+      </div>
+      <div class="chatbox-input-row">
+        <input class="chatbox-input" id="chatbox-input" type="text" placeholder="Ask the Corpus anything..." aria-label="Type your question">
+        <button class="chatbox-send" id="chatbox-send" aria-label="Send">&#10140;</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4: ORIGINALITY CLAIM
+═══════════════════════════════════════════════════════════════ -->
+<section class="originality-section" id="originality" aria-label="Originality Claim">
+  <div class="originality-container">
+
+    <h2>As of Spring 2026, two other public intellectuals — Tyler Cowen and Andrew Huberman — have made their work queryable by AI. Four guru-influencers, among them Eckhart Tolle, have bots trained on their &ldquo;teachings.&rdquo;</h2>
+
+    <p class="originality-distinction">This is different in three ways that matter.</p>
+
+    <div class="originality-body">
+
+      <h3>THE CORPUS</h3>
+      <p>Eight published books. Two unpublished manuscripts — <em>Truth Wars</em> and <em>Moral Anatomy of a Meltdown</em> — available nowhere else in public form. Five books in progress from <em>The Great Collisions</em> series, on topics ranging from game theory to AI and scientific discovery. Fifty articles and white papers developed over three decades of Fortune 500 work.</p>
+      <p>Cowen and Huberman's systems run on podcast transcripts and blog posts. <strong>This runs on the primary sources</strong> — the work scholars cite and publishers commission.</p>
+
+      <h3>THE BUILD</h3>
+      <p>Every comparable system was built by a platform — Dexa, Delphi, a WordPress plugin. The author provided the content. Engineers built the product. <strong>This was built by the author.</strong> No team. No engineering degree. No budget. A RAG pipeline constructed from scratch, in a few weekends, in 2026.</p>
+
+      <h3>THE UNPUBLISHED WORK</h3>
+      <p>No comparable system has made manuscripts queryable before publication. A researcher can interrogate <em>Truth Wars</em> before it exists as a book. A publisher can peer inside work in progress. <strong>That has not been done before. We looked.</strong></p>
+
+    </div>
+
+    <div class="originality-coda">
+      <p>None of them experienced the joy of building it themselves, from the ground up.</p>
+      <p>Neither, until recently, did I.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5: HOW I BUILT THIS
+═══════════════════════════════════════════════════════════════ -->
+<section class="architecture-section" id="architecture" aria-label="How I Built This — architecture">
+  <div class="arch-intro">
+    <h2>How I Built This</h2>
+    <p class="arch-subhead">I hadn&rsquo;t touched a codebase in 35 years.</p>
+    <p><strong>One person. No team. No engineering degree. No budget.</strong> The pipeline below is not a diagram of what I planned — it&rsquo;s a map of what I built.</p>
+  </div>
+
+  <div class="arch-diagram">
+    <div class="arch-header">
+      <div class="arch-header-eyebrow">system architecture</div>
+      <div class="arch-header-title">How the Corpus thinks</div>
+    </div>
+
+    <div class="pipeline">
+      <!-- COL 1: CORPUS -->
+      <div class="col">
+        <div class="col-label">Corpus</div>
+        <div class="node source"><div class="node-glow"></div><div class="node-icon">BOOKS</div><div class="node-name">8 Published Books</div><div class="node-sub">30 years of research,<br>frameworks &amp; evidence</div><span class="stat green">live</span></div>
+        <div class="node source"><div class="node-glow"></div><div class="node-icon">UNPUBLISHED</div><div class="node-name">The Great Collisions</div><div class="node-sub">2 volumes. Nowhere else<br>on the internet.</div><span class="stat green">live</span></div>
+        <div class="node source"><div class="node-glow"></div><div class="node-icon">GITHUB</div><div class="node-name">Adaptive Adoption</div><div class="node-sub">Living framework repo,<br>versioned &amp; growing</div><span class="stat amber">v2.0</span></div>
+        <div class="node source"><div class="node-glow"></div><div class="node-icon">ESSAYS</div><div class="node-name">Substack &amp; Talks</div><div class="node-sub">Long-form thinking,<br>keynote transcripts</div><span class="stat amber">v2.0</span></div>
+      </div>
+
+      <!-- ARROW 1 -->
+      <div class="arrow-col"><svg width="38" height="16" viewBox="0 0 38 16" fill="none"><line x1="2" y1="8" x2="32" y2="8" stroke="rgba(70,190,100,0.22)" stroke-width="1"/><polyline points="26,4 32,8 26,12" stroke="rgba(80,210,110,0.4)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle r="2.2" fill="rgba(80,215,110,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot1"/><circle r="2.2" fill="rgba(80,215,110,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot2"/><circle r="2.2" fill="rgba(80,215,110,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot3"/></svg></div>
+
+      <!-- COL 2: PROCESSING -->
+      <div class="col">
+        <div class="col-label">Processing</div>
+        <div class="node process"><div class="node-glow"></div><div class="node-icon">CHUNKER</div><div class="node-name">agent-chunker.py</div><div class="node-sub">Semantic chunking<br>by argument structure</div><span class="stat amber">running</span></div>
+        <div class="node process"><div class="node-glow"></div><div class="node-icon">EMBEDDINGS</div><div class="node-name">OpenAI Ada</div><div class="node-sub">1,536-dim vector<br>per chunk</div><span class="stat amber">live</span></div>
+        <div class="node process"><div class="node-glow"></div><div class="node-icon">DATABASE</div><div class="node-name">Supabase pgvector</div><div class="node-sub">paulgpt_chunks<br>1,010+ chunks stored</div><span class="stat amber">live</span></div>
+      </div>
+
+      <!-- ARROW 2 -->
+      <div class="arrow-col"><svg width="38" height="16" viewBox="0 0 38 16" fill="none"><line x1="2" y1="8" x2="32" y2="8" stroke="rgba(210,160,50,0.22)" stroke-width="1"/><polyline points="26,4 32,8 26,12" stroke="rgba(235,180,65,0.4)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle r="2.2" fill="rgba(240,188,68,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot1"/><circle r="2.2" fill="rgba(240,188,68,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot2"/><circle r="2.2" fill="rgba(240,188,68,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot3"/></svg></div>
+
+      <!-- COL 3: RETRIEVAL -->
+      <div class="col">
+        <div class="col-label">Retrieval</div>
+        <div class="node retrieve"><div class="node-glow"></div><div class="node-icon">QUERY</div><div class="node-name">Semantic Search</div><div class="node-sub">Question &rarr; vector<br>embedding in real time</div><span class="stat blue">cosine similarity</span></div>
+        <div class="node retrieve"><div class="node-glow"></div><div class="node-icon">MATCH</div><div class="node-name">Top-k Chunks</div><div class="node-sub">Most relevant passages<br>ranked by relevance</div><span class="stat blue">k = 8</span></div>
+        <div class="node retrieve"><div class="node-glow"></div><div class="node-icon">VERCEL</div><div class="node-name">Query Layer</div><div class="node-sub">Serverless function,<br>API key protected</div><span class="stat blue">live</span></div>
+      </div>
+
+      <!-- ARROW 3 -->
+      <div class="arrow-col"><svg width="38" height="16" viewBox="0 0 38 16" fill="none"><line x1="2" y1="8" x2="32" y2="8" stroke="rgba(80,130,220,0.22)" stroke-width="1"/><polyline points="26,4 32,8 26,12" stroke="rgba(105,158,248,0.4)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle r="2.2" fill="rgba(108,162,252,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot1"/><circle r="2.2" fill="rgba(108,162,252,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot2"/><circle r="2.2" fill="rgba(108,162,252,0.9)" style="offset-path:path('M 2 8 L 32 8');" class="dot3"/></svg></div>
+
+      <!-- COL 4: RESPONSE -->
+      <div class="col">
+        <div class="col-label">Response</div>
+        <div class="node respond"><div class="node-glow"></div><div class="node-icon">CLAUDE API</div><div class="node-name">Anthropic Claude</div><div class="node-sub">Chunks + system prompt<br>&rarr; grounded answer</div><span class="stat purple">Sonnet 4</span></div>
+        <div class="node respond"><div class="node-glow"></div><div class="node-icon">CITATIONS</div><div class="node-name">Source Attribution</div><div class="node-sub">Every answer names<br>its book sources</div><span class="stat purple">v1.0</span></div>
+        <div class="node respond"><div class="node-glow"></div><div class="node-icon">INTERFACE</div><div class="node-name">The Chatbox</div><div class="node-sub">paulgibbonsadvisory.com<br>embedded via Vercel</div><span class="stat purple">live</span></div>
+      </div>
+    </div>
+
+    <div class="arch-statement">
+      <div class="arch-statement-line1"><span>One person.</span> &nbsp;No team. &nbsp;No budget. &nbsp;No engineering degree. &nbsp;<span>Less than a week.</span></div>
+      <div class="arch-statement-line2">The gap between idea and execution has collapsed.</div>
+    </div>
+
+    <p class="arch-caption">In 2022, this wasn&rsquo;t possible. In 2025, it would have cost $100,000 and taken three months. In 2026, you can do it yourself.</p>
+  </div>
+</section>
+
+
+<footer class="page-footer">
+  &copy; 2026 Paul Gibbons Advisory &middot; paulgibbonsadvisory.com
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ────────────────────────────────────────────
+// DATA: 15 THEMES
+// ────────────────────────────────────────────
+const THEMES_DATA = [
+  { name: "AI as Ontological Rupture", color: "#e8442a",
+    books: ["The Great Collisions Vol. 1", "Impact"],
+    passage: "AI is not a tool in the way a hammer is a tool. It restructures what it means to know, to decide, to lead.",
+    source: "The Great Collisions, Ch. 3" },
+  { name: "Intention-Action Gap", color: "#3a8ee8",
+    books: ["The Science of Organizational Change", "Impact"],
+    passage: "Organizations don't fail to change because people resist. They fail because the distance between what leaders intend and what they actually do is vast and unmapped.",
+    source: "The Science of Organizational Change, Ch. 7" },
+  { name: "Proprietary Context", color: "#d4921e",
+    books: ["Impact", "Adaptive Adoption"],
+    passage: "Every organisation has a context no outsider fully grasps. The frameworks that work are the ones that bend to that context.",
+    source: "Impact, Ch. 2" },
+  { name: "Meaning & Purpose", color: "#5ac84a",
+    books: ["The Science of Organizational Change", "Impact"],
+    passage: "Purpose is not a poster on the wall. It is the thing that survives when every other justification has been stripped away.",
+    source: "The Science of Organizational Change, Ch. 11" },
+  { name: "Leadership Identity", color: "#c060d8",
+    books: ["Impact", "The Science of Organizational Change"],
+    passage: "The leader's job is not to have the answer. It is to hold the space in which the answer can emerge — and to tolerate the discomfort of not knowing.",
+    source: "Impact, Ch. 5" },
+  { name: "Evidence-Based Change", color: "#e8a030",
+    books: ["The Science of Organizational Change", "Impact"],
+    passage: "Most change management is folklore dressed in consultant language. Evidence-based change asks: what actually works, and how do we know?",
+    source: "The Science of Organizational Change, Ch. 1" },
+  { name: "Adaptive Adoption", color: "#28c8c8",
+    books: ["Adaptive Adoption", "Impact"],
+    passage: "Adoption is not deployment. Technology arrives in a day. The human system takes months to reorganise around it — if it ever does.",
+    source: "Adaptive Adoption, Ch. 1" },
+  { name: "Trust as Infrastructure", color: "#d84068",
+    books: ["Impact", "Adaptive Adoption"],
+    passage: "Trust is not soft. It is the infrastructure on which every other organisational capability depends. Without it, governance is theatre and change is coercion.",
+    source: "Impact, Ch. 9" },
+  { name: "Democratisation of Intelligence", color: "#5080e8",
+    books: ["The Great Collisions Vol. 1", "Adaptive Adoption"],
+    passage: "For the first time in history, the cost of building an intelligent system has fallen to zero. The implications for power, access, and expertise are barely understood.",
+    source: "The Great Collisions, Ch. 1" },
+  { name: "Epistemic Strength", color: "#c8c040",
+    books: ["Truth Wars", "The Science of Organizational Change"],
+    passage: "Epistemic strength is the capacity to hold uncertainty without collapsing into false certainty. It is the rarest and most valuable leadership trait of the 2020s.",
+    source: "Truth Wars, Ch. 4" },
+  { name: "Culture as Constraint", color: "#e06820",
+    books: ["The Science of Organizational Change", "Impact"],
+    passage: "Culture is not 'how we do things around here.' Culture is the set of constraints that determine what is thinkable, sayable, and doable.",
+    source: "The Science of Organizational Change, Ch. 8" },
+  { name: "Human-AI Collaboration", color: "#38c870",
+    books: ["The Great Collisions Vol. 1", "Adaptive Adoption"],
+    passage: "The question is not whether AI will replace humans. It is what kind of human is needed alongside AI — and whether our institutions can produce that human fast enough.",
+    source: "The Great Collisions, Ch. 6" },
+  { name: "Behavioural Governance", color: "#a040c0",
+    books: ["Adaptive Adoption", "Impact"],
+    passage: "Governance without behaviour is a document. Behaviour without governance is chaos. The work is in the overlap.",
+    source: "Adaptive Adoption, Ch. 4" },
+  { name: "Organisational Learning", color: "#48c8e0",
+    books: ["The Science of Organizational Change", "Impact"],
+    passage: "A learning organisation is not one that trains its people. It is one that changes its mind when the evidence demands it.",
+    source: "The Science of Organizational Change, Ch. 12" },
+  { name: "Ethics of AI Deployment", color: "#d84040",
+    books: ["The Great Collisions Vol. 1", "Truth Wars"],
+    passage: "The ethical question is not 'should we deploy AI?' It is 'who bears the cost when it goes wrong?' — and that question is being answered by default, not by design.",
+    source: "The Great Collisions, Ch. 8" }
+];
+
+// ────────────────────────────────────────────
+// DATA: 10 EXAMPLE PROMPTS
+// ────────────────────────────────────────────
+const PROMPTS = [
+  "What is Adaptive Adoption and how does it differ from Kotter?",
+  "Does Paul have evidence for his claims about culture change?",
+  "What is the Intention-Action Gap and why does it matter for AI?",
+  "What does the corpus say about trust as infrastructure?",
+  "How does Behavioral Governance differ from traditional compliance?",
+  "What is Oracle Science and why does it matter for the future of research?",
+  "Where does Paul disagree with mainstream change management?",
+  "What connects epistemic strength and organisational learning?",
+  "What is Truth Wars about?",
+  "How does Capital-Labor Reconfiguration show up across the books?"
+];
+
+
+// ────────────────────────────────────────────
+// RENDER: 15 THEMES GRID
+// ────────────────────────────────────────────
+(function() {
+  const grid = document.getElementById('themes-grid');
+  let expandedIdx = -1;
+
+  THEMES_DATA.forEach((theme, idx) => {
+    const cell = document.createElement('div');
+    cell.className = 'theme-cell';
+    cell.innerHTML = `
+      <span class="theme-cell-color" style="background:${theme.color}"></span>
+      <span class="theme-cell-name">${theme.name}</span>
+      <div class="theme-detail">
+        <div class="theme-books">${theme.books.map(b => `<span class="theme-book-pill">${b}</span>`).join('')}</div>
+        <div class="theme-passage">&ldquo;${theme.passage}&rdquo;<cite>— ${theme.source}</cite></div>
+        <button class="theme-ask-btn" data-theme="${theme.name}">Ask the Corpus about this &rarr;</button>
+      </div>
+    `;
+
+    cell.addEventListener('click', (e) => {
+      if (e.target.classList.contains('theme-ask-btn')) return;
+      if (expandedIdx === idx) {
+        cell.classList.remove('expanded');
+        expandedIdx = -1;
+      } else {
+        document.querySelectorAll('.theme-cell.expanded').forEach(c => c.classList.remove('expanded'));
+        cell.classList.add('expanded');
+        expandedIdx = idx;
+      }
+    });
+
+    grid.appendChild(cell);
+  });
+
+  // Theme → chatbox pre-load + scroll
+  grid.addEventListener('click', (e) => {
+    if (e.target.classList.contains('theme-ask-btn')) {
+      const themeName = e.target.getAttribute('data-theme');
+      const input = document.getElementById('chatbox-input');
+      input.value = `What does the corpus say about ${themeName}?`;
+      document.getElementById('chatbox').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => input.focus(), 600);
+    }
+  });
+})();
+
+
+// ────────────────────────────────────────────
+// RENDER: PROMPT CAROUSEL
+// ────────────────────────────────────────────
+(function() {
+  const track = document.getElementById('carousel-track');
+  let offset = 0;
+  const VISIBLE = window.innerWidth > 700 ? 3 : 1;
+  let autoTimer;
+
+  function render() {
+    track.innerHTML = '';
+    for (let i = 0; i < VISIBLE; i++) {
+      const idx = (offset + i) % PROMPTS.length;
+      const el = document.createElement('div');
+      el.className = 'carousel-prompt';
+      el.textContent = PROMPTS[idx];
+      el.addEventListener('click', () => {
+        document.getElementById('chatbox-input').value = PROMPTS[idx];
+        document.getElementById('chatbox-input').focus();
+      });
+      track.appendChild(el);
+    }
+  }
+
+  function advance(dir) {
+    offset = (offset + dir + PROMPTS.length) % PROMPTS.length;
+    render();
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => advance(1), 5000);
+  }
+
+  document.getElementById('carousel-prev').addEventListener('click', () => advance(-1));
+  document.getElementById('carousel-next').addEventListener('click', () => advance(1));
+
+  render();
+  resetAuto();
+})();
+
+
+// ────────────────────────────────────────────
+// CHATBOX: SEND (UI only — backend hook later)
+// ────────────────────────────────────────────
+(function() {
+  const input    = document.getElementById('chatbox-input');
+  const sendBtn  = document.getElementById('chatbox-send');
+  const messages = document.getElementById('chatbox-messages');
+  const empty    = document.getElementById('chatbox-empty');
+
+  function send() {
+    const q = input.value.trim();
+    if (!q) return;
+
+    if (empty) empty.remove();
+
+    // User message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'msg msg-user';
+    userMsg.textContent = q;
+    messages.appendChild(userMsg);
+
+    input.value = '';
+
+    // Typing indicator
+    const typing = document.createElement('div');
+    typing.className = 'msg msg-typing';
+    typing.textContent = 'Searching 1,010 passages...';
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    // Real API call
+    fetch('/api/query', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: q })
+    })
+    .then(res => res.json())
+    .then(data => {
+      typing.remove();
+      const botMsg = document.createElement('div');
+      botMsg.className = 'msg msg-bot';
+      if (data.error) {
+        botMsg.textContent = data.error;
+      } else {
+        const sourceLine = data.sources && data.sources.length
+          ? '<div class="msg-sources">Sources: ' + data.sources.join(' · ') + '</div>'
+          : '';
+        botMsg.innerHTML = data.answer.replace(/
+/g, '<br>') + sourceLine;
+      }
+      messages.appendChild(botMsg);
+      messages.scrollTop = messages.scrollHeight;
+    })
+    .catch(() => {
+      typing.remove();
+      const errMsg = document.createElement('div');
+      errMsg.className = 'msg msg-bot';
+      errMsg.textContent = 'Something went wrong. Please try again.';
+      messages.appendChild(errMsg);
+      messages.scrollTop = messages.scrollHeight;
+    });
+  }
+
+  sendBtn.addEventListener('click', send);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') send(); });
+})();
+
+
+// ────────────────────────────────────────────
+// CONSTELLATION: Three.js (atmospheric background)
+// ────────────────────────────────────────────
+(function() {
+  const COLS = [
+    0xe8442a, 0x3a8ee8, 0xd4921e, 0x5ac84a, 0xc060d8,
+    0xe8a030, 0x28c8c8, 0xd84068, 0x5080e8, 0xc8c040,
+    0xe06820, 0x38c870, 0xa040c0, 0x48c8e0, 0xd84040
+  ];
+
+  const EDGES = [
+    [0,4],[0,8],[0,11],[0,14],[1,5],[1,6],[1,13],
+    [2,8],[2,9],[3,4],[3,13],[4,7],[4,12],[5,6],[5,9],
+    [6,10],[6,12],[7,11],[7,12],[8,11],[9,10],[10,13],[11,14],[1,13]
+  ];
+
+  const MANUAL = [
+    [55,78,30],[80,55,42],[-82,52,38],[38,58,-80],[-42,62,-78],
+    [96,8,14],[-96,10,12],[42,12,90],[-38,14,92],[44,8,-90],
+    [-46,10,-88],[88,-52,28],[-88,-50,32],[34,-56,-88],[-50,-75,-46]
+  ];
+
+  const section = document.getElementById('constellation-bg');
+  const cv      = document.getElementById('constellation-canvas');
+  let W = section.clientWidth;
+  let H = section.clientHeight;
+
+  const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(W, H);
+  renderer.setClearColor(0x080a0f, 1);
+
+  const scene  = new THREE.Scene();
+  scene.fog    = new THREE.FogExp2(0x080a0f, 0.0012);
+  const camera = new THREE.PerspectiveCamera(50, W / H, 0.1, 2000);
+  camera.position.set(0, 60, 280);
+  camera.lookAt(0, 0, 0);
+
+  // Stars
+  const starN = 600, starPos = new Float32Array(starN * 3);
+  for (let i = 0; i < starN * 3; i++) starPos[i] = (Math.random() - 0.5) * 2200;
+  const starGeo = new THREE.BufferGeometry();
+  starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+  scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({
+    color: 0x8090b0, size: 1.0, transparent: true, opacity: 0.3, sizeAttenuation: false
+  })));
+
+  // Central attractor
+  const core = new THREE.Mesh(
+    new THREE.SphereGeometry(4.5, 32, 32),
+    new THREE.MeshBasicMaterial({ color: 0xf5d060 })
+  );
+  scene.add(core);
+
+  const glowLayers = [18, 32, 52].map((r, i) => {
+    const g = new THREE.Mesh(
+      new THREE.SphereGeometry(r, 16, 16),
+      new THREE.MeshBasicMaterial({
+        color: 0xf0c030, transparent: true,
+        opacity: [0.14, 0.07, 0.03][i],
+        blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false
+      })
+    );
+    scene.add(g);
+    return g;
+  });
+
+  const POS = MANUAL.map(([x, y, z]) => new THREE.Vector3(x, y, z));
+
+  // Spokes
+  POS.forEach(p => {
+    const geo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), p]);
+    scene.add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x1a1e2e, transparent: true, opacity: 0.15 })));
+  });
+
+  // Nodes
+  const nodes = POS.map((p, i) => {
+    const m = new THREE.Mesh(
+      new THREE.SphereGeometry(5, 24, 24),
+      new THREE.MeshBasicMaterial({ color: COLS[i] })
+    );
+    m.position.copy(p);
+    scene.add(m);
+
+    const g = new THREE.Mesh(
+      new THREE.SphereGeometry(12, 16, 16),
+      new THREE.MeshBasicMaterial({
+        color: COLS[i], transparent: true, opacity: 0.1,
+        blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false
+      })
+    );
+    g.position.copy(p);
+    scene.add(g);
+
+    return { mesh: m, glow: g };
+  });
+
+  // Edges
+  EDGES.forEach(([a, b]) => {
+    const geo = new THREE.BufferGeometry().setFromPoints([POS[a], POS[b]]);
+    scene.add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x1a2235, transparent: true, opacity: 0.25 })));
+  });
+
+  // Animate — slow, atmospheric
+  let t = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    t += 0.006; // slower than standalone
+
+    camera.position.x = Math.sin(t * 0.35) * 300;
+    camera.position.z = Math.cos(t * 0.35) * 300;
+    camera.position.y = 50 + Math.sin(t * 0.15) * 30;
+    camera.lookAt(0, 0, 0);
+
+    const pulse = 1 + Math.sin(t * 0.8) * 0.1;
+    core.scale.setScalar(pulse);
+    glowLayers.forEach((g, i) => g.scale.setScalar(pulse * [1.1, 1.05, 1][i]));
+
+    nodes.forEach(({ mesh, glow }, i) => {
+      const b = 1 + Math.sin(t * 1.2 + i * 0.72) * 0.06;
+      mesh.scale.setScalar(b);
+      glow.scale.setScalar(b);
+    });
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    W = section.clientWidth;
+    H = section.clientHeight;
+    renderer.setSize(W, H);
+    camera.aspect = W / H;
+    camera.updateProjectionMatrix();
+  });
+})();
+</script>
+
+</body>
+</html>
