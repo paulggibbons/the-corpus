@@ -1349,10 +1349,10 @@ const PROMPTS = [
     [-46,10,-88],[88,-52,28],[-88,-50,32],[34,-56,-88],[-50,-75,-46]
   ];
 
-  const section = document.getElementById('constellation-bg');
+  const section = document.querySelector('.hero');
   const cv      = document.getElementById('constellation-canvas');
-  let W = section.clientWidth;
-  let H = section.clientHeight;
+  let W = section.clientWidth || window.innerWidth;
+  let H = section.clientHeight || window.innerHeight;
 
   const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -1456,8 +1456,8 @@ const PROMPTS = [
   animate();
 
   window.addEventListener('resize', () => {
-    W = section.clientWidth;
-    H = section.clientHeight;
+    W = section.clientWidth || window.innerWidth;
+    H = section.clientHeight || window.innerHeight;
     renderer.setSize(W, H);
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
