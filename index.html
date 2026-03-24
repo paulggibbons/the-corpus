@@ -240,7 +240,7 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-size: 0.64rem;
   font-weight: 500;
-  color: var(--rust);
+  color: var(--gold);
   background: transparent;
   border: 1px solid rgba(200, 75, 47, 0.35);
   border-radius: 4px;
@@ -283,9 +283,9 @@ body {
 
 .why-section-tag {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.6rem;
+  font-size: 1.1rem;
   letter-spacing: 0.25em;
-  color: var(--rust);
+  color: var(--gold);
   margin-bottom: 0.8rem;
 }
 
@@ -585,9 +585,9 @@ body {
 
 .originality-body h3 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.65rem;
+  font-size: 1.1rem;
   letter-spacing: 0.22em;
-  color: var(--rust);
+  color: var(--gold);
   margin-bottom: 0.6rem;
   margin-top: 2.2rem;
 }
@@ -722,7 +722,7 @@ body {
 
 .col-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 1.1rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(180, 158, 88, 0.65);
@@ -860,47 +860,73 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   FAB: Floating Ask Button (Fix #2)
+   FLOATING CTA: Test Drive the Corpus
 ═══════════════════════════════════════════ */
-.fab-ask {
+.float-cta {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 9999;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--ink);
-  border: none;
-  cursor: pointer;
+  background: rgba(15, 14, 13, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(184,146,42,0.25);
+  padding: 0.8rem 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
-  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
-  opacity: 0;
-  pointer-events: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  flex-direction: column;
-  gap: 2px;
-  line-height: 1;
+  gap: 1.2rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
 }
-.fab-ask.visible {
-  opacity: 1;
-  pointer-events: auto;
+.float-cta.visible {
+  transform: translateY(0);
 }
-.fab-ask:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 24px rgba(184,146,42,0.45);
+.float-cta-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: var(--paper);
+  opacity: 0.7;
 }
-.fab-ask svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--ink);
+.float-cta-btn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  background: var(--gold);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.6rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+.float-cta-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+@media (max-width: 520px) {
+  .float-cta { flex-direction: column; gap: 0.5rem; padding: 0.6rem 1rem; }
+  .float-cta-text { font-size: 0.7rem; }
+}
+.why-section-hero {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 4rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(245,240,232,0.08);
+}
+.why-section-hero h2 {
+  font-family: 'DM Serif Display', serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
 }
 </style>
 </head>
@@ -937,6 +963,10 @@ body {
 <section class="why-section" id="why" aria-label="Why This Matters">
   <div class="why-container">
 
+    <div class="why-section-hero">
+      <h2>In 2022, this wasn&rsquo;t possible. In 2025, it would have cost $100,000 and taken three months.<br>In 2026, you can do it yourself.</h2>
+    </div>
+
     <div class="why-section-tag">THE PERSONAL STORY</div>
     <h2 class="why-section-title">I&rsquo;m Client Zero</h2>
     <div class="why-section-body">
@@ -946,7 +976,6 @@ body {
       <p>Then I built this.</p>
       <p><strong>One person. No team. No engineering degree. No budget.</strong> I hadn&rsquo;t touched a codebase in 35 years. The pipeline, the chunking, the embeddings, the query layer — built using Claude, from scratch, in a few weekends.</p>
       <p><em>The engineering isn&rsquo;t a footnote. It is the argument.</em></p>
-      <p>In 2022, this wasn&rsquo;t possible. In 2025, it would have cost $100,000 and taken three months. In 2026, you can do it yourself.</p>
       <p>This isn&rsquo;t a case study from someone else&rsquo;s company. Not a prediction about what AI will enable. <strong>This is what happens when the gap between idea and execution collapses.</strong></p>
     </div>
 
@@ -1125,11 +1154,11 @@ body {
   &copy; 2026 Paul Gibbons Advisory &middot; paulgibbonsadvisory.com
 </footer>
 
-<!-- FAB: Floating Ask Button (Fix #2) -->
-<button class="fab-ask" id="fab-ask" aria-label="Ask the Corpus">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
-  <span>Ask</span>
-</button>
+<!-- Floating CTA: Test Drive the Corpus -->
+<div class="float-cta" id="float-cta">
+  <span class="float-cta-text">1,010 PASSAGES &middot; 8 BOOKS &middot; CITED ANSWERS</span>
+  <a href="#chatbox" class="float-cta-btn" id="float-cta-btn">TEST DRIVE THE CORPUS &rarr;</a>
+</div>
 
 
 <!-- ═══════════════════════════════════════════════════════════════
@@ -1389,24 +1418,23 @@ const PROMPTS = [
 
 
 
-// ────────────────────────────────────────────
-// FAB: Show/hide based on chatbox visibility (Fix #2)
-// ────────────────────────────────────────────
 (function() {
-  const fab = document.getElementById('fab-ask');
-  const chatboxSection = document.getElementById('chatbox');
+  var cta = document.getElementById('float-cta');
+  var ctaBtn = document.getElementById('float-cta-btn');
+  var chatboxSection = document.getElementById('chatbox');
 
-  fab.addEventListener('click', () => {
+  ctaBtn.addEventListener('click', function(e) {
+    e.preventDefault();
     chatboxSection.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => document.getElementById('chatbox-input').focus(), 600);
+    setTimeout(function() { document.getElementById('chatbox-input').focus(); }, 600);
   });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
       if (entry.isIntersecting) {
-        fab.classList.remove('visible');
+        cta.classList.remove('visible');
       } else {
-        fab.classList.add('visible');
+        cta.classList.add('visible');
       }
     });
   }, { threshold: 0.1 });
