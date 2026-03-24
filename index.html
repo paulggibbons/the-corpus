@@ -75,7 +75,7 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.35;
+  opacity: 0.45;
 }
 .hero-constellation canvas {
   position: absolute;
@@ -369,6 +369,7 @@ body {
   display: flex;
   gap: 10px;
   overflow: hidden;
+  transition: transform 0.4s ease;
 }
 
 .carousel-prompt {
@@ -378,13 +379,14 @@ body {
   border-radius: 8px;
   padding: 0.7rem 0.9rem;
   font-size: 0.72rem;
-  color: rgba(225, 205, 168, 0.6);
+  color: rgba(225, 205, 168, 0.8);
   cursor: pointer;
   transition: border-color 0.25s, background 0.25s, color 0.25s;
   line-height: 1.45;
   min-height: 60px;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 @media (max-width: 700px) {
@@ -426,7 +428,7 @@ body {
 
 /* Chat interface */
 .chatbox-interface {
-  background: rgba(14, 18, 28, 0.6);
+  background: rgba(14, 18, 28, 0.9);
   border: 1px solid rgba(90, 115, 160, 0.15);
   border-radius: 10px;
   overflow: hidden;
@@ -453,7 +455,7 @@ body {
   font-family: 'DM Serif Display', serif;
   font-style: italic;
   font-size: 1rem;
-  color: rgba(225, 205, 168, 0.2);
+  color: rgba(225, 205, 168, 0.4);
   max-width: 360px;
   line-height: 1.55;
 }
@@ -477,17 +479,17 @@ body {
   border-radius: 10px 10px 2px 10px;
   padding: 0.7rem 1rem;
   font-size: 0.82rem;
-  color: rgba(240, 222, 165, 0.9);
+  color: rgba(245, 232, 185, 1);
 }
 
 .msg-bot {
   align-self: flex-start;
-  background: rgba(28, 34, 52, 0.5);
+  background: rgba(35, 42, 62, 0.85);
   border: 1px solid rgba(90, 115, 160, 0.12);
   border-radius: 10px 10px 10px 2px;
   padding: 0.9rem 1rem;
   font-size: 0.82rem;
-  color: rgba(225, 205, 168, 0.8);
+  color: rgba(240, 228, 205, 0.95);
   line-height: 1.6;
 }
 
@@ -496,7 +498,7 @@ body {
   padding-top: 0.5rem;
   border-top: 1px solid rgba(90, 115, 160, 0.1);
   font-size: 0.62rem;
-  color: rgba(184, 146, 42, 0.45);
+  color: rgba(184, 146, 42, 0.7);
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 0.04em;
 }
@@ -856,6 +858,50 @@ body {
   letter-spacing: 0.06em;
   border-top: 1px solid rgba(184,146,42,0.08);
 }
+
+/* ═══════════════════════════════════════════
+   FAB: Floating Ask Button (Fix #2)
+═══════════════════════════════════════════ */
+.fab-ask {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1;
+}
+.fab-ask.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.fab-ask:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(184,146,42,0.45);
+}
+.fab-ask svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--ink);
+}
 </style>
 </head>
 <body>
@@ -1079,6 +1125,12 @@ body {
   &copy; 2026 Paul Gibbons Advisory &middot; paulgibbonsadvisory.com
 </footer>
 
+<!-- FAB: Floating Ask Button (Fix #2) -->
+<button class="fab-ask" id="fab-ask" aria-label="Ask the Corpus">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+  <span>Ask</span>
+</button>
+
 
 <!-- ═══════════════════════════════════════════════════════════════
      SCRIPTS
@@ -1221,28 +1273,37 @@ const PROMPTS = [
 // ────────────────────────────────────────────
 (function() {
   const track = document.getElementById('carousel-track');
-  let offset = 0;
   const VISIBLE = window.innerWidth > 700 ? 3 : 1;
+  let offset = 0;
   let autoTimer;
 
-  function render() {
+  // Fix #5: Render ALL prompts once, slide with translateX
+  function buildTrack() {
     track.innerHTML = '';
-    for (let i = 0; i < VISIBLE; i++) {
-      const idx = (offset + i) % PROMPTS.length;
+    PROMPTS.forEach((prompt) => {
       const el = document.createElement('div');
       el.className = 'carousel-prompt';
-      el.textContent = PROMPTS[idx];
+      el.textContent = prompt;
       el.addEventListener('click', () => {
-        document.getElementById('chatbox-input').value = PROMPTS[idx];
+        document.getElementById('chatbox-input').value = prompt;
         document.getElementById('chatbox-input').focus();
       });
       track.appendChild(el);
-    }
+    });
+    applyTranslate();
+  }
+
+  function applyTranslate() {
+    const promptPercent = 100 / VISIBLE;
+    track.style.transform = 'translateX(calc(-' + (offset * promptPercent) + '% - ' + (offset * 10) + 'px))';
   }
 
   function advance(dir) {
-    offset = (offset + dir + PROMPTS.length) % PROMPTS.length;
-    render();
+    const maxOffset = PROMPTS.length - VISIBLE;
+    offset = offset + dir;
+    if (offset > maxOffset) offset = 0;
+    if (offset < 0) offset = maxOffset;
+    applyTranslate();
     resetAuto();
   }
 
@@ -1254,7 +1315,7 @@ const PROMPTS = [
   document.getElementById('carousel-prev').addEventListener('click', () => advance(-1));
   document.getElementById('carousel-next').addEventListener('click', () => advance(1));
 
-  render();
+  buildTrack();
   resetAuto();
 })();
 
@@ -1327,10 +1388,38 @@ const PROMPTS = [
 })();
 
 
+
 // ────────────────────────────────────────────
-// CONSTELLATION: Three.js (atmospheric background)
+// FAB: Show/hide based on chatbox visibility (Fix #2)
 // ────────────────────────────────────────────
 (function() {
+  const fab = document.getElementById('fab-ask');
+  const chatboxSection = document.getElementById('chatbox');
+
+  fab.addEventListener('click', () => {
+    chatboxSection.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => document.getElementById('chatbox-input').focus(), 600);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fab.classList.remove('visible');
+      } else {
+        fab.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  observer.observe(chatboxSection);
+})();
+
+
+// ────────────────────────────────────────────
+// CONSTELLATION: Three.js (atmospheric background)
+// Fix #1: Wrapped in window load event
+// ────────────────────────────────────────────
+window.addEventListener('load', function() {
   const COLS = [
     0xe8442a, 0x3a8ee8, 0xd4921e, 0x5ac84a, 0xc060d8,
     0xe8a030, 0x28c8c8, 0xd84068, 0x5080e8, 0xc8c040,
@@ -1353,6 +1442,10 @@ const PROMPTS = [
   const cv      = document.getElementById('constellation-canvas');
   let W = section.clientWidth || window.innerWidth;
   let H = section.clientHeight || window.innerHeight;
+
+  // Fix #1: Set explicit canvas width/height attributes
+  cv.setAttribute('width', W * Math.min(devicePixelRatio, 2));
+  cv.setAttribute('height', H * Math.min(devicePixelRatio, 2));
 
   const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -1458,11 +1551,13 @@ const PROMPTS = [
   window.addEventListener('resize', () => {
     W = section.clientWidth || window.innerWidth;
     H = section.clientHeight || window.innerHeight;
+    cv.setAttribute('width', W * Math.min(devicePixelRatio, 2));
+    cv.setAttribute('height', H * Math.min(devicePixelRatio, 2));
     renderer.setSize(W, H);
     camera.aspect = W / H;
     camera.updateProjectionMatrix();
   });
-})();
+});
 </script>
 
 </body>
