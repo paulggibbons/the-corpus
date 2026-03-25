@@ -363,12 +363,12 @@ body {
   position: relative;
   margin-bottom: 1.8rem;
   padding: 0 2.5rem;
+  overflow: hidden;
 }
 
 .carousel-track {
   display: flex;
   gap: 10px;
-  overflow: hidden;
   transition: transform 0.4s ease;
 }
 
@@ -1306,45 +1306,38 @@ const PROMPTS = [
   let offset = 0;
   let autoTimer;
 
-  // Fix #5: Render ALL prompts once, slide with translateX
-  function buildTrack() {
+  function render() {
     track.innerHTML = '';
-    PROMPTS.forEach((prompt) => {
-      const el = document.createElement('div');
+    for (var i = 0; i < VISIBLE; i++) {
+      var idx = (offset + i) % PROMPTS.length;
+      var el = document.createElement('div');
       el.className = 'carousel-prompt';
-      el.textContent = prompt;
-      el.addEventListener('click', () => {
-        document.getElementById('chatbox-input').value = prompt;
-        document.getElementById('chatbox-input').focus();
-      });
+      el.textContent = PROMPTS[idx];
+      (function(prompt) {
+        el.addEventListener('click', function() {
+          document.getElementById('chatbox-input').value = prompt;
+          document.getElementById('chatbox-input').focus();
+        });
+      })(PROMPTS[idx]);
       track.appendChild(el);
-    });
-    applyTranslate();
-  }
-
-  function applyTranslate() {
-    const promptPercent = 100 / VISIBLE;
-    track.style.transform = 'translateX(calc(-' + (offset * promptPercent) + '% - ' + (offset * 10) + 'px))';
+    }
   }
 
   function advance(dir) {
-    const maxOffset = PROMPTS.length - VISIBLE;
-    offset = offset + dir;
-    if (offset > maxOffset) offset = 0;
-    if (offset < 0) offset = maxOffset;
-    applyTranslate();
+    offset = (offset + dir + PROMPTS.length) % PROMPTS.length;
+    render();
     resetAuto();
   }
 
   function resetAuto() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(() => advance(1), 5000);
+    autoTimer = setInterval(function() { advance(1); }, 5000);
   }
 
-  document.getElementById('carousel-prev').addEventListener('click', () => advance(-1));
-  document.getElementById('carousel-next').addEventListener('click', () => advance(1));
+  document.getElementById('carousel-prev').addEventListener('click', function() { advance(-1); });
+  document.getElementById('carousel-next').addEventListener('click', function() { advance(1); });
 
-  buildTrack();
+  render();
   resetAuto();
 })();
 
@@ -1353,16 +1346,19 @@ const PROMPTS = [
 // CHATBOX: SEND (UI only — backend hook later)
 // ────────────────────────────────────────────
 (function() {
-  const input    = document.getElementById('chatbox-input');
-  const sendBtn  = document.getElementById('chatbox-send');
-  const messages = document.getElementById('chatbox-messages');
-  const empty    = document.getElementById('chatbox-empty');
+  var input    = document.getElementById('chatbox-input');
+  var sendBtn  = document.getElementById('chatbox-send');
+  var messages = document.getElementById('chatbox-messages');
+  var emptyEl  = document.getElementById('chatbox-empty');
 
   function send() {
-    const q = input.value.trim();
+    var q = input.value.trim();
     if (!q) return;
 
-    if (empty) empty.remove();
+    if (emptyEl && emptyEl.parentNode) {
+      emptyEl.parentNode.removeChild(emptyEl);
+      emptyEl = null;
+    }
 
     // User message
     const userMsg = document.createElement('div');
@@ -1396,8 +1392,7 @@ const PROMPTS = [
         const sourceLine = data.sources && data.sources.length
           ? '<div class="msg-sources">Sources: ' + data.sources.join(' · ') + '</div>'
           : '';
-        botMsg.innerHTML = data.answer.replace(/
-/g, '<br>') + sourceLine;
+        botMsg.innerHTML = data.answer.replace(/\n/g, '<br>') + sourceLine;
       }
       messages.appendChild(botMsg);
       messages.scrollTop = messages.scrollHeight;
